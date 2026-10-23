@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "(bundle check > /dev/null || bundle install)
+      && rm -f tmp/pids/server.pid
+      && (bin/rails db:prepare || echo 'db:prepare に失敗しました。bin/exec bin/rails db:reset を試してください')
+      ; bin/rails server -b 0.0.0.0 -p 3000"
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-o", "/dev/null", "http://localhost:3000/"]
+      interval: 2s
+      timeout: 5s
+      retries: 90
+      start_period: 10s
+    init: true
+
+  evil:
+    image: busybox:1.36
+    profiles: ["csrf"]
+    volumes:
+      - ./evil_site:/site:ro
+    ports:
+      - "8000:8000"
+    command: httpd -f -p 8000 -h /site
+
+volumes:
+  bundle:
