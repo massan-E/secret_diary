@@ -24,6 +24,15 @@
   </head>
 
   <body>
+    <nav>
+      <% if logged_in? %>
+        <%= current_user.email_address %> でログイン中
+        <%= button_to "ログアウト", session_path, method: :delete %>
+      <% else %>
+        <%= link_to "ログイン", new_session_path %> | <%= link_to "新規登録", new_user_path %>
+      <% end %>
+    </nav>
+    <% if alert %><p style="color: red"><%= alert %></p><% end %>
     <%= yield %>
   </body>
 </html>

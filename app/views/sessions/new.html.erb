@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+<h1>ログイン</h1>
+<%= form_with url: session_path do |f| %>
+  <%= f.email_field :email_address, placeholder: "メールアドレス", required: true %>
+  <%= f.password_field :password, placeholder: "パスワード", required: true %>
+  <%= f.submit "ログイン" %>
+<% end %>
+<%= link_to "新規登録", new_user_path %>
