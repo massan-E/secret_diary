@@ -3,21 +3,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email_address: params[:email_address])
-    if user.nil?
-      flash.now[:alert] = "そのメールアドレスは登録されていません"
-      render :new, status: :unprocessable_content
-    elsif user.authenticate(params[:password])
+    if user = User.authenticate_by(email_address: params[:email_address], password: params[:password])
+      reset_session
       session[:user_id] = user.id
       redirect_to diaries_path, notice: "ログインしました"
     else
-      flash.now[:alert] = "パスワードが違います"
+      flash.now[:alert] = "メールアドレスまたはパスワードが違います"
       render :new, status: :unprocessable_content
     end
   end
 
   def destroy
-    session.delete(:user_id)
+    reset_session
     redirect_to new_session_path, notice: "ログアウトしました"
   end
 end
