@@ -42,6 +42,11 @@ bin/rails db:reset      # Step 3 以降はデータを作り直す
 | alice@example.com | password |
 | bob@example.com | password |
 
+## スライド
+
+- [docs/slides/handson-90min.pdf](docs/slides/handson-90min.pdf)：当日投影するスライド（PDF）
+- [docs/slides/handson-90min.md](docs/slides/handson-90min.md)：同じ内容の Markdown 版（Marp 形式、スピーカーノート付き）
+
 ## 便利な URL
 
 - http://localhost:3000/letter_opener ：開発環境で送ったメールを確認できます（Step 4）
