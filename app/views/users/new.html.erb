@@ -1,0 +1,9 @@
+<h1>新規登録</h1>
+<%= form_with model: @user do |f| %>
+  <% @user.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <%= f.email_field :email_address, placeholder: "メールアドレス", required: true %>
+  <%= f.password_field :password, placeholder: "パスワード", required: true %>
+  <%= f.submit "登録" %>
+<% end %>
