@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# サーバーのログを表示し続ける（Ctrl+C で終了）
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+exec docker compose logs -f app
