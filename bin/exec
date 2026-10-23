@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# コンテナの中でコマンドを実行する。例: bin/exec bin/rails db:reset
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ -t 0 ] && [ -t 1 ]; then
+  exec docker compose exec app "$@"
+else
+  exec docker compose exec -T app "$@"
+fi
