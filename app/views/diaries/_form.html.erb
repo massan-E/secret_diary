@@ -1,4 +1,6 @@
 <%= form_with(model: diary) do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
   <% if diary.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(diary.errors.count, "error") %> prohibited this diary from being saved:</h2>

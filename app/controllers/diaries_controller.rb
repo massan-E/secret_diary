@@ -3,7 +3,7 @@ class DiariesController < ApplicationController
 
   # GET /diaries
   def index
-    @diaries = Diary.all
+    @diaries = current_user.diaries
   end
 
   # GET /diaries/1
@@ -53,6 +53,6 @@ class DiariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def diary_params
-      params.expect(diary: [ :title, :body ])
+      params.expect(diary: [ :title, :body, :user_id ])
     end
 end

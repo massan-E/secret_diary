@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
+  before_action :require_login
   helper_method :current_user, :logged_in?
 
   private
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     current_user.present?
+  end
+
+  def require_login
+    redirect_to new_session_path, alert: "ログインしてください" unless logged_in?
   end
 end
