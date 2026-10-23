@@ -1,0 +1,6 @@
+<h1>新しいパスワード</h1>
+<%= form_with url: password_path(params[:token]), method: :put do |f| %>
+  <%= f.password_field :password, placeholder: "新しいパスワード", required: true %>
+  <%= f.password_field :password_confirmation, placeholder: "確認", required: true %>
+  <%= f.submit "変更する" %>
+<% end %>
