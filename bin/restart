@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# サーバーを再起動する。Gemfile が変わっていれば bundle install も行う
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+docker compose restart app
+docker compose up -d --wait app
+echo "再起動しました。http://localhost:3000"
