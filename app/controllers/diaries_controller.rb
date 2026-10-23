@@ -12,7 +12,7 @@ class DiariesController < ApplicationController
 
   # GET /diaries/new
   def new
-    @diary = Diary.new
+    @diary = current_user.diaries.build
   end
 
   # GET /diaries/1/edit
@@ -21,7 +21,7 @@ class DiariesController < ApplicationController
 
   # POST /diaries
   def create
-    @diary = Diary.new(diary_params)
+    @diary = current_user.diaries.build(diary_params)
 
     if @diary.save
       redirect_to @diary, notice: "Diary was successfully created."
@@ -48,11 +48,11 @@ class DiariesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_diary
-      @diary = Diary.find(params.expect(:id))
+      @diary = current_user.diaries.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def diary_params
-      params.expect(diary: [ :title, :body, :user_id ])
+      params.expect(diary: [ :title, :body ])
     end
 end
