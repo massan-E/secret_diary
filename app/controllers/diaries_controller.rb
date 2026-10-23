@@ -1,5 +1,4 @@
 class DiariesController < ApplicationController
-  skip_forgery_protection # Step 5 の体験用。終わったら必ず消す
   before_action :set_diary, only: %i[ show edit update destroy ]
 
   # GET /diaries
