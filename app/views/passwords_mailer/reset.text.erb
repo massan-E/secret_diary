@@ -1,2 +1,2 @@
-以下のリンクからパスワードを再設定してください。
-<%= edit_password_url(@token) %>
+以下のリンクからパスワードを再設定してください（15分間有効）。
+<%= edit_password_url(@user.password_reset_token) %>
