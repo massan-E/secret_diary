@@ -38,7 +38,9 @@ paginate: true
 3. **直す**：核心の数行だけ書き換える
 4. **確かめる**：同じことが通らなくなったか見る
 
-遅れても大丈夫。`git checkout step-XX-start` で次のステップから合流できます。
+手順とコピペ用のコードは**教材**（`docs/handson.md`）にあります。「教材の 2-3」＝ Step 2 の「直す」。
+
+遅れても大丈夫。`git checkout step-XX-start` で次のステップから合流できます（教材 0-2）。
 
 試してよいのは**自分の PC のアプリだけ**。実在のサービスで試すのは違法です。
 
@@ -136,8 +138,8 @@ $ bin/rails runner 'pp User.pluck(:email_address, :password)'
 
 ## Step 1 ｜ 直す：書き換えるのは4か所
 
-1. Gemfile の bcrypt を有効化 → `bundle install` → **サーバー再起動**
-2. password 列を password_digest 列に入れ替える（教材のマイグレーションをコピペ）
+1. Gemfile の bcrypt を有効化（行頭の # を消す）
+2. password 列 → password_digest 列のマイグレーション（教材 1-3）→ `bin/restart`
 3. User モデルに `has_secure_password` を1行
 4. `user_params` とフォームに `password_confirmation`
 
@@ -145,7 +147,7 @@ $ bin/rails runner 'pp User.pluck(:email_address, :password)'
 
 確かめる：同じパスワードで2人登録 → runner で `password_digest` を見る。値が2人とも違えば OK
 
-<!-- つまずきポイント：bundle install 後にサーバーを再起動しないと bcrypt が読み込まれずエラーになる。DB の列名は password_digest なのに password と書けるのは、has_secure_password が password= を足すから。値が2人で違うのはソルトのおかげ。 -->
+<!-- コードはすべて教材（docs/handson.md）の 1-3 にある。bin/restart で bundle install とマイグレーションが自動で走る。つまずきポイント：bin/restart を忘れると bcrypt が読み込まれずエラーになる。マイグレーションのファイル名は教材のとおりにする（次のステップのブランチとそろえるため）。DB の列名は password_digest なのに password と書けるのは、has_secure_password が password= を足すから。値が2人で違うのはソルトのおかげ。 -->
 
 ---
 
@@ -245,7 +247,7 @@ end
 
 確かめる：未登録でもパスワード違いでも、同じメッセージが出れば OK
 
-<!-- authenticate_by はユーザーが存在しないときもハッシュ計算をするので、応答時間の差でも登録の有無が分からないようになっている。詳しいコードは教材の 2-3 をコピペ。 -->
+<!-- authenticate_by はユーザーが存在しないときもハッシュ計算をするので、応答時間の差でも登録の有無が分からないようになっている。詳しいコードは教材（docs/handson.md）の 2-3 をコピペ。 -->
 
 ---
 

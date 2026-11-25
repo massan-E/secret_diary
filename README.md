@@ -5,6 +5,7 @@ Rails 8 で認証機能の仕組みを学ぶ、90分ハンズオン用のアプ�
 
 ## 当日の資料
 
+- [docs/handson.md](docs/handson.md)：**教材**。各ステップの手順とコピペ用のコード（スライドの「教材の 2-3」は、この教材の 2-3 の節）
 - [docs/slides/handson-90min.pdf](docs/slides/handson-90min.pdf)：当日投影するスライド（PDF）
 - [docs/slides/handson-90min.md](docs/slides/handson-90min.md)：同じ内容の Markdown 版（[Marp](https://marp.app/) 形式、スピーカーノート付き）
 
